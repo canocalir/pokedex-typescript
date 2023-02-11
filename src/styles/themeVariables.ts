@@ -1,3 +1,3 @@
 export const theme = {
-    backgroundColor: "red"
+    bodyBackgroundColor: "#cea7f3"
 }

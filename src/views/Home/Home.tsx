@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import PokeCard from "../../components/PokeCard/PokeCard";
 import { HomePageContainer } from "./Home.styled";
 import { useGetPokemonListQuery } from "../../services/pokemonApi";
+import Navbar from "../../components/Navbar/Navbar";
+import LoadingBar from "../../components/LoadingBar/LoadingBar";
 
 const Home = () => {
   const [offsetNumber, setOffsetNumber] = useState(0);
@@ -23,12 +25,16 @@ const Home = () => {
     };
   }, [offsetNumber, isFetching]);
   return (
-    <HomePageContainer>
-      {data?.results?.map((pokemon: any, id: number) => {
-        const { name, url } = pokemon;
-        return <PokeCard key={id} name={name} url={url} />;
-      })}
-    </HomePageContainer>
+    <>
+      <Navbar />
+      <HomePageContainer>
+        {data?.results?.map((pokemon: any, id: number) => {
+          const { name, url } = pokemon;
+          return <PokeCard key={id} name={name} url={url} />;
+        })}
+        {!isFetching && <LoadingBar/>}
+      </HomePageContainer>
+    </>
   );
 };
 

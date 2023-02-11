@@ -5,9 +5,7 @@ const HomePageContainer = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-    align-items: center;
-    padding: 1rem;
-    margin: 2rem;
+    padding: 3rem;
 `
 
 export {HomePageContainer}

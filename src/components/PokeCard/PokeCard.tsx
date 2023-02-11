@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { PokeCardContainer } from "./PokeCard.styled";
+import { PokeCardButton, PokeCardContainer } from "./PokeCard.styled";
+import useCapitalizeLetter from "../../hooks/useCapitalizeLetter";
 
 type PokeCardProps = {
   name: string;
@@ -7,12 +8,13 @@ type PokeCardProps = {
 };
 
 const PokeCard = ({ name }: PokeCardProps) => {
-  
+  const { capitalized } = useCapitalizeLetter(name);
+
   return (
     <PokeCardContainer>
       {name}
       <Link state={name} to={`/detail/${name}`}>
-        <button>Detail</button>
+        <PokeCardButton>Details of {capitalized}</PokeCardButton>
       </Link>
     </PokeCardContainer>
   );
