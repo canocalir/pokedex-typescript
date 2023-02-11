@@ -15,7 +15,7 @@ const Navbar = () => {
   );
 
   return (
-    <NavbarContainer>
+    <NavbarContainer isDarkMode={isDarkMode}>
       <Link to={'/'}>
       <NavbarLogo src={logo} alt="logo" />
       </Link>

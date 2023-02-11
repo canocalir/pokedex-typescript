@@ -8,6 +8,7 @@ import LoadingBar from "../../components/LoadingBar/LoadingBar";
 const Home = () => {
   const [offsetNumber, setOffsetNumber] = useState(0);
   const { data, isFetching } = useGetPokemonListQuery(offsetNumber);
+  
   useEffect(() => {
     const onScroll = () => {
       const scrolledToBottom =

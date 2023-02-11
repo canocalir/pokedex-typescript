@@ -5,7 +5,7 @@ const HomePageContainer = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-    padding: 3rem;
+    padding: 6rem 3rem;
 `
 
 export {HomePageContainer}

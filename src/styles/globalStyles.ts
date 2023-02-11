@@ -1,12 +1,19 @@
 import { createGlobalStyle } from "styled-components";
 import { theme } from "./themeVariables";
 
-export const GlobalStyles = createGlobalStyle`
+type GlobalStyleProps = {
+  isDarkMode: boolean;
+};
+
+export const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
     body{
         margin:0;
         padding: 0;
         box-sizing: border-box;
         font-family: 'Montserrat', sans-serif;
-        background-color: ${theme.bodyBackgroundColor};
+        background-color: ${(props) =>
+          props.isDarkMode
+            ? theme.bodyBackgroundColorDark
+            : theme.bodyBackgroundColorLight};        
     }
 `;
