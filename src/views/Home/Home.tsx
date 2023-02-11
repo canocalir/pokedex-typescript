@@ -1,6 +1,10 @@
+import { HomePageContainer } from "./Home.styled"
+
 const Home = () => {
   return (
-    <div>Home</div>
+    <HomePageContainer>
+      Home
+    </HomePageContainer>
   )
 }
 
