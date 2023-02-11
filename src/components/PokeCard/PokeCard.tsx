@@ -1,11 +1,21 @@
-import { PokeCardContainer } from "./PokeCard.styled"
+import { Link } from "react-router-dom";
+import { PokeCardContainer } from "./PokeCard.styled";
 
-const PokeCard = () => {
+type PokeCardProps = {
+  name: string;
+  url: string;
+};
+
+const PokeCard = ({ name }: PokeCardProps) => {
+  
   return (
     <PokeCardContainer>
-        Pokemon
+      {name}
+      <Link state={name} to={`/detail/${name}`}>
+        <button>Detail</button>
+      </Link>
     </PokeCardContainer>
-  )
-}
+  );
+};
 
-export default PokeCard
+export default PokeCard;

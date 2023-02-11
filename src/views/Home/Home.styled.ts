@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 const HomePageContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(5fr, 20rem);
-    grid-template-rows: repeat(4fr, 10rem);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    padding: 1rem;
+    margin: 2rem;
 `
 
 export {HomePageContainer}

@@ -1,11 +1,35 @@
-import { HomePageContainer } from "./Home.styled"
+import { useEffect, useState } from "react";
+import PokeCard from "../../components/PokeCard/PokeCard";
+import { HomePageContainer } from "./Home.styled";
+import { useGetPokemonListQuery } from "../../services/pokemonApi";
 
 const Home = () => {
+  const [offsetNumber, setOffsetNumber] = useState(0);
+  const { data, isFetching } = useGetPokemonListQuery(offsetNumber);
+  useEffect(() => {
+    const onScroll = () => {
+      const scrolledToBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight;
+      if (scrolledToBottom && !isFetching) {
+        console.log("Fetching more data...");
+        setOffsetNumber(offsetNumber + 1);
+      }
+    };
+
+    document.addEventListener("scroll", onScroll);
+
+    return () => {
+      document.removeEventListener("scroll", onScroll);
+    };
+  }, [offsetNumber, isFetching]);
   return (
     <HomePageContainer>
-      Home
+      {data?.results?.map((pokemon: any, id: number) => {
+        const { name, url } = pokemon;
+        return <PokeCard key={id} name={name} url={url} />;
+      })}
     </HomePageContainer>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
