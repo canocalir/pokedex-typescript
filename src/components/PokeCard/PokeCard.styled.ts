@@ -57,14 +57,14 @@ const PokeCardButton = styled.button<PokeCardProps>`
 
 const PokeCardImage = styled.img<PokeCardProps>`
   height: 25%;
-  width: 27%;
+  width: 30%;
   background-color: #ffffff;
   background: url(${pokeBall});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top-center;
   border-radius: 45%;
-  padding: 1.5rem;
+  padding: 1.2rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   z-index: 1;
 `;
