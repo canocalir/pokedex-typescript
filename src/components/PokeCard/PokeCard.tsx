@@ -4,11 +4,21 @@ import {
   PokeCardButton,
   PokeCardContainer,
   PokeCardImage,
+  PokeCardMovesSelect,
+  PokeCardSingleStats,
+  PokeCardStatsAttackIcon,
+  PokeCardStatsContainer,
+  PokeCardStatsDefenseIcon,
+  PokeCardStatsHealthIcon,
+  PokeCardStatsSpecialAttackIcon,
+  PokeCardStatsSpecialDefenseIcon,
+  PokeCardStatsSpeedIcon,
 } from "./PokeCard.styled";
 import useCapitalizeLetter from "../../hooks/useCapitalizeLetter";
 import { Spinner } from "../LoadingBar/LoadingBar.styled";
 import { urlCorrector } from "../../utils/utils";
 import { useAppSelector } from "../../app/hooks";
+import { useGetPokemonDetailQuery } from "../../services/pokemonApi";
 
 type PokeCardProps = {
   name: string;
@@ -17,9 +27,39 @@ type PokeCardProps = {
 
 const PokeCard = ({ name }: PokeCardProps) => {
   const { capitalized } = useCapitalizeLetter(name);
+  const { isDarkMode } = useAppSelector((state) => state.themeChanger);
 
-  const {isDarkMode} = useAppSelector(state => state.themeChanger)
-  
+  const { data } = useGetPokemonDetailQuery(name);
+  const { stats, moves } = data ?? {};
+
+  const statsConditionalRender = stats?.map(
+    (pokemonStat: any, index: number) => {
+      const { stat, base_stat } = pokemonStat;
+      const iconsByStat = (icon: React.ReactNode) => {
+        return (
+          <PokeCardSingleStats key={index}>
+            {icon}
+            <p>{base_stat}</p>
+          </PokeCardSingleStats>
+        );
+      };
+      switch (stat?.name) {
+        case "hp":
+          return iconsByStat(<PokeCardStatsHealthIcon />);
+        case "attack":
+          return iconsByStat(<PokeCardStatsAttackIcon />);
+        case "defense":
+          return iconsByStat(<PokeCardStatsDefenseIcon />);
+        case "special-attack":
+          return iconsByStat(<PokeCardStatsSpecialAttackIcon />);
+        case "special-defense":
+          return iconsByStat(<PokeCardStatsSpecialDefenseIcon />);
+        case "speed":
+          return iconsByStat(<PokeCardStatsSpeedIcon />);
+      }
+    }
+  );
+
   const avatar =
     name === "mr-mime"
       ? `https://projectpokemon.org/images/normal-sprite/${urlCorrector(
@@ -35,12 +75,30 @@ const PokeCard = ({ name }: PokeCardProps) => {
 
   return (
     <PokeCardContainer>
-      <PokeCardBanner/>
-      {<Spinner /> && <PokeCardImage src={avatar} />}
-      <h2>{capitalized}</h2>
-      <Link state={name} to={`/detail/${name}`}>
-        <PokeCardButton isDarkMode={isDarkMode}>Details of {capitalized}</PokeCardButton>
-      </Link>
+      {!data ? (
+        <Spinner />
+      ) : (
+        <>
+          <PokeCardBanner isDarkMode={isDarkMode} />
+          <PokeCardImage isDarkMode={isDarkMode} src={avatar} />
+          <PokeCardStatsContainer>
+            {statsConditionalRender}
+          </PokeCardStatsContainer>
+          <h2>{capitalized}</h2>
+          <label htmlFor="moves">{capitalized}'s Moves</label>
+          <PokeCardMovesSelect name="moves">
+            {moves?.map((pokemonMoves: any, index: number) => {
+              const { move } = pokemonMoves;
+              return <option key={index}>{move?.name}</option>;
+            })}
+          </PokeCardMovesSelect>
+          <Link state={{data}} to={`/detail/${name}`}>
+            <PokeCardButton isDarkMode={isDarkMode}>
+              Details of {capitalized}
+            </PokeCardButton>
+          </Link>
+        </>
+      )}
     </PokeCardContainer>
   );
 };

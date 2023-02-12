@@ -5,7 +5,7 @@ type ThemeProps = {
 };
 
 const initialState: ThemeProps = {
-  isDarkMode: false,
+  isDarkMode: true,
 };
 
 export const themeSlice = createSlice({

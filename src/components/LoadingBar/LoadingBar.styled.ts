@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LoadingBarContainer = styled.div`
   width: 100%;
-  background-color: #ffffff;
+  background-color: #ffffff41;
   height: 5rem;
   display: flex;
   justify-content: center;

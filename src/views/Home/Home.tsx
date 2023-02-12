@@ -29,9 +29,9 @@ const Home = () => {
     <>
       <Navbar />
       <HomePageContainer>
-        {data?.results?.map((pokemon: any, id: number) => {
-          const { name, url } = pokemon;
-          return <PokeCard key={id} name={name} url={url} />;
+        {data?.results?.map((pokemon: any, index:number) => {
+          const { name, url } = pokemon ?? {};
+          return <PokeCard key={index} name={name} url={url} />;
         })}
         {!isFetching && <LoadingBar/>}
       </HomePageContainer>

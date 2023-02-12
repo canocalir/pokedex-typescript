@@ -7,7 +7,7 @@ export const pokemonApi = createApi({
   }),
   endpoints: (builder) => ({
     getPokemonList: builder.query({
-      query: (offsetNumber) => `pokemon?offset=${offsetNumber * 20}&limit=20`,
+      query: (offsetNumber) => `pokemon?offset=${offsetNumber * 20}&limit=30`,
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
