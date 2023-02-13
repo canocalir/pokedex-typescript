@@ -77,7 +77,6 @@ const DetailCard = () => {
   }, [evolutionChain]);
 
   const itemColor = species?.color?.name;
-  console.log(weight, height);
 
   return (
     <DetailCardContainer abilityColor={itemColor}>

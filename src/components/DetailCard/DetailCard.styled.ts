@@ -87,7 +87,7 @@ const GoBackContainer = styled.div`
   align-items: center;
   gap: 0.1rem;
   position: absolute;
-  right: 1rem;
+  right: 0.5rem;
   top: 1rem;
   cursor: pointer;
   &:hover {
