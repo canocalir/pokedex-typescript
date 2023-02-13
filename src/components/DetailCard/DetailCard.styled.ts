@@ -7,7 +7,11 @@ const FlexColumn = css`
   flex-direction: column;
 `;
 
-const DetailCardContainer = styled.div`
+type AbilityProps = {
+  abilityColor: string;
+};
+
+const DetailCardContainer = styled.div<AbilityProps>`
   display: flex;
   background-color: #ffffff;
   justify-content: center;
@@ -18,6 +22,9 @@ const DetailCardContainer = styled.div`
   flex-wrap: wrap;
   height: fit-content;
   position: relative;
+  border: 4px solid ${(props) => props.abilityColor};
+  border-radius: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   > h1 {
     margin: 0;
   }
@@ -48,20 +55,21 @@ const EvolutionContainer = styled.div`
   }
 `;
 
-const MainPokemonContainer = styled.div`
+const MainPokemonContainer = styled.div<AbilityProps>`
   ${FlexColumn};
   justify-content: center;
   align-items: center;
   gap: 0.4rem;
-  border: 0.1rem solid green;
+  border: 0.1rem solid ${(props) => props.abilityColor};
   padding: 0.5rem;
   border-radius: 1rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   h1 {
     margin: 0;
   }
-  img{
+  img {
     width: 100%;
+    height: 10rem;
   }
 `;
 
@@ -70,8 +78,8 @@ const EvoArrow = styled(BiDownArrow)`
 `;
 
 const GoBackButton = styled(TbArrowBack)`
-  font-size: 3rem;
-`
+  font-size: 2.5rem;
+`;
 
 const GoBackContainer = styled.div`
   ${FlexColumn};
@@ -79,17 +87,18 @@ const GoBackContainer = styled.div`
   align-items: center;
   gap: 0.1rem;
   position: absolute;
-  right: 2rem;
-  top:1rem;
+  right: 1rem;
+  top: 1rem;
   cursor: pointer;
-  &:hover{
+  &:hover {
     color: red;
   }
-  >p{
+  > p {
     margin: 0;
     font-weight: 600;
+    font-size: 0.8rem;
   }
-`
+`;
 
 const AbilitiesContainer = styled.div`
   ${FlexColumn};
@@ -101,19 +110,21 @@ const AbilitiesContainer = styled.div`
   }
 `;
 
-const AbilitiesSpread = styled.div`
+const AbilitiesSpread = styled.div<AbilityProps>`
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
   p{
-    background-color: green;
+    background-color: ${(props) =>
+      props.abilityColor === "white" ? "#93d7da" : props.abilityColor};
     border-radius: 0.4rem;
     padding: 0.2rem;
     text-align:center;
     font-weight: 600;
-    color: #ffffff;
+    color: ${(props) =>
+      props.abilityColor === "yellow" ? "#4e4e47" : "#ffffff"};
     &:hover{
-      background-color: orange;
+      background-color: grey;
       cursor: pointer;
       transition: 300ms ease-in;
     }
@@ -128,5 +139,5 @@ export {
   AbilitiesSpread,
   MainPokemonContainer,
   GoBackButton,
-  GoBackContainer
+  GoBackContainer,
 };

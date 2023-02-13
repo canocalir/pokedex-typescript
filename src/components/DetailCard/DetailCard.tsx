@@ -33,25 +33,15 @@ const DetailCard = () => {
   );
   const location = useLocation();
   const navigate = useNavigate();
+
   const { sprites, name, abilities } = location?.state?.data ?? {};
   const { capitalized: pokemonName } = useCapitalizeLetter(name);
+
   const { data: species } = useGetSpeciesDetailsQuery(name);
   const url = species?.evolution_chain?.url;
   const { data: evolution } = useGetEvolutionDataQuery(url ?? "");
-
-  const findEvolutedPokemons = () => {
-    const currentIndex = evolutionChain?.findIndex(
-      (species: any) => species?.name == name
-    );
-    setEvolutedPokemons({
-      ...evolutedPokemons,
-      prev: currentIndex > 0 && evolutionChain[currentIndex - 1]?.name,
-      next:
-        currentIndex < evolutionChain.length - 1 &&
-        evolutionChain[currentIndex + 1]?.name,
-    });
-  };
-
+  
+  //Get evoluted pokemon sprites
   const prevAvatar = prevSprite?.sprites?.other?.dream_world?.front_default;
   const nextAvatar = nextSprite?.sprites?.other?.dream_world?.front_default;
 
@@ -72,15 +62,30 @@ const DetailCard = () => {
     }
   }, [evolution]);
 
+  //Find Evoluted Pokemons of current pokemon
+  const findEvolutedPokemons = () => {
+    const currentIndex = evolutionChain?.findIndex(
+      (species: any) => species?.name == name
+    );
+    setEvolutedPokemons({
+      ...evolutedPokemons,
+      prev: currentIndex > 0 && evolutionChain[currentIndex - 1]?.name,
+      next:
+        currentIndex < evolutionChain.length - 1 &&
+        evolutionChain[currentIndex + 1]?.name,
+    });
+  };
   useEffect(() => {
     findEvolutedPokemons();
   }, [evolutionChain]);
 
+  const itemColor = species?.color?.name;
+
   return (
-    <DetailCardContainer>
+    <DetailCardContainer abilityColor={itemColor}>
       <GoBackContainer onClick={() => navigate(-1)}>
-      <GoBackButton/>
-      <p>Go Back</p>
+        <GoBackButton />
+        <p>Go Back</p>
       </GoBackContainer>
       <EvolutionContainer>
         <EvolutedPokemonContainer>
@@ -97,12 +102,12 @@ const DetailCard = () => {
             </>
           )}
         </EvolutedPokemonContainer>
-        <MainPokemonContainer>
-        <img
-          src={sprites?.other?.dream_world?.front_default}
-          alt="pokemon-detail-image"
-        />
-        <h1>{pokemonName}</h1>
+        <MainPokemonContainer abilityColor={itemColor}>
+          <img
+            src={sprites?.other?.dream_world?.front_default}
+            alt="pokemon-detail-image"
+          />
+          <h1>{pokemonName}</h1>
         </MainPokemonContainer>
         <EvolutedPokemonContainer>
           {nextAvatar && (
@@ -121,7 +126,7 @@ const DetailCard = () => {
       </EvolutionContainer>
       <AbilitiesContainer>
         <h3>Abilities</h3>
-        <AbilitiesSpread>
+        <AbilitiesSpread abilityColor={itemColor}>
           {abilities?.map((ability: any, index: number) => {
             return <p key={index}>{ability?.ability?.name}</p>;
           })}

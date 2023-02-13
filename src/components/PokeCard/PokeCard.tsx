@@ -4,6 +4,7 @@ import {
   PokeCardBanner,
   PokeCardButton,
   PokeCardContainer,
+  PokeCardIconsContainer,
   PokeCardImage,
   PokeCardMovesSelect,
   PokeCardSingleStats,
@@ -19,7 +20,27 @@ import useCapitalizeLetter from "../../hooks/useCapitalizeLetter";
 import { Spinner } from "../LoadingBar/LoadingBar.styled";
 import { urlCorrector } from "../../utils/utils";
 import { useAppSelector } from "../../app/hooks";
-import { useGetPokemonDetailQuery } from "../../services/pokemonApi";
+import {
+  useGetPokemonDetailQuery,
+  useGetSpeciesDetailsQuery,
+} from "../../services/pokemonApi";
+
+//Pokemon Icons by Types
+import ground from "../../assets/icons/ground.svg";
+import flying from "../../assets/icons/flying.png";
+import electric from "../../assets/icons/electric.svg";
+import poison from "../../assets/icons/poison.svg";
+import normal from "../../assets/icons/normal.svg";
+import fire from "../../assets/icons/fire.png";
+import fairy from "../../assets/icons/fairy.svg";
+import bug from "../../assets/icons/bug.png";
+import psychic from "../../assets/icons/psy.svg";
+import fighting from "../../assets/icons/fighting.svg";
+import water from "../../assets/icons/water.svg";
+import steel from "../../assets/icons/steel.svg";
+import rock from "../../assets/icons/rock.svg";
+import ice from "../../assets/icons/ice.svg";
+import dark from "../../assets/icons/dark.svg";
 
 type PokeCardProps = {
   name: string;
@@ -32,10 +53,57 @@ const PokeCard = ({ name }: PokeCardProps) => {
 
   const { data } = useGetPokemonDetailQuery(name);
   const { stats, moves } = data ?? {};
-console.log(data)
+  const { data: species } = useGetSpeciesDetailsQuery(name);
+  console.log();
+
+  //Get Pokemon Types
+  const pokemonTypes = data?.types?.map((pokemonType: any, index: number) => {
+    const { type } = pokemonType;
+    const iconsByPokemon = (iconUrl: string) => {
+      return <img key={index} src={iconUrl} />;
+    };
+    switch (type?.name) {
+      case "ground":
+        return iconsByPokemon(ground);
+      case "flying":
+        return iconsByPokemon(flying);
+      case "electric":
+        return iconsByPokemon(electric);
+      case "poison":
+        return iconsByPokemon(poison);
+      case "normal":
+        return iconsByPokemon(normal);
+      case "fire":
+        return iconsByPokemon(fire);
+      case "fairy":
+        return iconsByPokemon(fairy);
+      case "bug":
+        return iconsByPokemon(bug);
+      case "psychic":
+        return iconsByPokemon(psychic);
+      case "fighting":
+        return iconsByPokemon(fighting);
+      case "water":
+        return iconsByPokemon(water);
+      case "steel":
+        return iconsByPokemon(steel);
+      case "rock":
+        return iconsByPokemon(rock);
+      case "ice":
+        return iconsByPokemon(ice);
+      case "dark":
+        return iconsByPokemon(dark);  
+    }
+  });
+
+  //Get Items Background Color By Type
+  const itemColor = species?.color?.name;
+
+  //Stats by Icon Conditional
   const statsConditionalRender = stats?.map(
     (pokemonStat: any, index: number) => {
       const { stat, base_stat } = pokemonStat;
+      //Conditionally render icons by stats
       const iconsByStat = (icon: React.ReactNode) => {
         return (
           <PokeCardSingleStats key={index}>
@@ -61,6 +129,7 @@ console.log(data)
     }
   );
 
+  //Fix for Nidoran's dash in url
   const avatar =
     name === "mr-mime"
       ? `https://projectpokemon.org/images/normal-sprite/${urlCorrector(
@@ -74,10 +143,23 @@ console.log(data)
           name
         )}.gif`;
 
-        const heldItemsConditional = data?.held_items?.map((item:any) => {
-          const {item:{name}} = item
-          return name 
-        })
+  //Held Items Parse Data
+  const heldItemsData = data?.held_items?.map((item: any) => {
+    const {
+      item: { name },
+    } = item;
+    return name;
+  });
+
+  //Set moves into selectbox
+  const movesSelectBox = (
+    <PokeCardMovesSelect name="moves">
+      {moves?.map((pokemonMoves: any, index: number) => {
+        const { move } = pokemonMoves;
+        return <option key={index}>{move?.name}</option>;
+      })}
+    </PokeCardMovesSelect>
+  );
 
   return (
     <PokeCardContainer>
@@ -85,6 +167,7 @@ console.log(data)
         <Spinner />
       ) : (
         <>
+          <PokeCardIconsContainer>{pokemonTypes}</PokeCardIconsContainer>
           <PokeCardBanner isDarkMode={isDarkMode} />
           <PokeCardImage isDarkMode={isDarkMode} src={avatar} />
           <PokeCardStatsContainer>
@@ -92,18 +175,19 @@ console.log(data)
           </PokeCardStatsContainer>
           <h2>{capitalized}</h2>
           <label htmlFor="moves">{capitalized}'s Moves</label>
-          <PokeCardMovesSelect name="moves">
-            {moves?.map((pokemonMoves: any, index: number) => {
-              const { move } = pokemonMoves;
-              return <option key={index}>{move?.name}</option>;
-            })}
-          </PokeCardMovesSelect>
-          {data?.held_items?.length > 0 && <HeldItemsContainer>
+          {movesSelectBox}
+          <HeldItemsContainer itemsColor={itemColor}>
             <label htmlFor="items">Items</label>
-            <div>
-            {heldItemsConditional?.map((item:any) => <p>{item}</p>)}
-            </div>
-          </HeldItemsContainer>}
+            {data?.held_items?.length > 0 ? (
+              <div>
+                {heldItemsData?.map((item: any, index: number) => (
+                  <p key={index}>{item}</p>
+                ))}
+              </div>
+            ) : (
+              <h6>No Held Items</h6>
+            )}
+          </HeldItemsContainer>
           <Link state={{ data }} to={`/detail/${name}`}>
             <PokeCardButton isDarkMode={isDarkMode}>
               Evolution of {capitalized}

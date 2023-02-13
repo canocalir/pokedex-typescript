@@ -1,4 +1,5 @@
 import { useAppSelector } from "./app/hooks";
+import BackToTop from "./components/BackToTop/BackToTop";
 import AppRouter from "./router/AppRouter";
 import { GlobalStyles } from "./styles/globalStyles";
 
@@ -9,6 +10,7 @@ function App() {
     <div>
       <GlobalStyles isDarkMode={isDarkMode} />
       <AppRouter />
+      <BackToTop/>
     </div>
   );
 }

@@ -15,8 +15,17 @@ type PokeCardProps = {
   isDarkMode: boolean;
 };
 
+type ItemsColorProps = {
+  itemsColor: string;
+};
+
 const StatIcons = css`
   font-size: 1rem;
+`;
+
+const FlexColumn = css`
+  display: flex;
+  flex-direction: column;
 `;
 
 const PokeCardContainer = styled.div`
@@ -46,6 +55,7 @@ const PokeCardButton = styled.button<PokeCardProps>`
   border-radius: 0.5rem;
   padding: 0.8rem;
   width: 15rem;
+  margin-top: 0.8rem;
   cursor: pointer;
   &:hover {
     background-color: ${(props) =>
@@ -57,15 +67,14 @@ const PokeCardButton = styled.button<PokeCardProps>`
 `;
 
 const PokeCardImage = styled.img<PokeCardProps>`
-  height: 25%;
-  width: 30%;
+  height: 20%;
   background-color: #ffffff;
   background: url(${pokeBall});
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: top-center;
+  background-position: center;
   border-radius: 45%;
-  padding: 1.2rem;
+  padding: 2.2rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   z-index: 1;
 `;
@@ -101,8 +110,7 @@ const PokeCardStatsContainer = styled.div`
 `;
 
 const PokeCardSingleStats = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${FlexColumn};
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
@@ -140,29 +148,48 @@ const PokeCardStatsSpeedIcon = styled(RiSpeedMiniFill)`
   color: #064b0b;
 `;
 
-const HeldItemsContainer = styled.div`
-  display: flex;
-  flex-direction:column;
+const HeldItemsContainer = styled.div<ItemsColorProps>`
+  ${FlexColumn};
   justify-content: center;
   align-items: center;
-  label{
+  gap: 0.5rem;
+  label {
     margin-top: 0.5rem;
     font-weight: 600;
   }
-  div{
+  div {
     display: flex;
     gap: 0.3rem;
   }
-  p{
+  p {
     font-size: 0.62rem;
-    background-color: red;
+    background-color: ${(props) =>
+      props.itemsColor === "white" ? "#93d7da" : props.itemsColor};
     border-radius: 0.3rem;
     padding: 0.2rem;
-    color: #ffffff;
+    color: ${(props) =>
+      props.itemsColor === "yellow" ? "#4e4e47" : "#ffffff"};
     font-weight: 600;
-    text-align:center;
+    text-align: center;
+    margin: 0;
   }
-`
+  h6 {
+    margin: 0;
+  }
+`;
+
+const PokeCardIconsContainer = styled.div`
+  ${FlexColumn};
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 3;
+  gap: 0.3rem;
+  filter: drop-shadow(0 0 0.55rem black);
+  img {
+    height: 2rem;
+  }
+`;
 
 export {
   PokeCardContainer,
@@ -178,5 +205,6 @@ export {
   PokeCardStatsSpecialDefenseIcon,
   PokeCardStatsSpeedIcon,
   PokeCardSingleStats,
-  HeldItemsContainer
+  HeldItemsContainer,
+  PokeCardIconsContainer,
 };
