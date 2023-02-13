@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import {
   GiBroadsword,
   GiCheckedShield,
@@ -10,19 +10,8 @@ import { RiSpeedMiniFill } from "react-icons/ri";
 import { theme } from "../../styles/themeVariables";
 import banner from "../../assets/banner.jpg";
 import pokeBall from "../../assets/pokeball.png";
-import { FlexColumn } from "../../styles/mixins";
-
-type PokeCardProps = {
-  isDarkMode: boolean;
-};
-
-type ItemsColorProps = {
-  itemsColor: string;
-};
-
-const StatIcons = css`
-  font-size: 1rem;
-`;
+import { FlexColumn, StatIcons } from "../../styles/mixins";
+import type { ItemsColor, PokeCard } from "../../types/types";
 
 const PokeCardContainer = styled.div`
   display: flex;
@@ -46,7 +35,7 @@ const PokeCardContainer = styled.div`
   }
 `;
 
-const PokeCardButton = styled.button<PokeCardProps>`
+const PokeCardButton = styled.button<PokeCard>`
   border: none;
   background-color: ${(props) =>
     props.isDarkMode ? theme.pokeCardButtonDark : theme.pokeCardButtonLight};
@@ -66,7 +55,7 @@ const PokeCardButton = styled.button<PokeCardProps>`
   }
 `;
 
-const PokeCardImage = styled.img<PokeCardProps>`
+const PokeCardImage = styled.img<PokeCard>`
   height: 20%;
   background-color: #ffffff;
   background: url(${pokeBall});
@@ -79,7 +68,7 @@ const PokeCardImage = styled.img<PokeCardProps>`
   z-index: 1;
 `;
 
-const PokeCardBanner = styled.img<PokeCardProps>`
+const PokeCardBanner = styled.img<PokeCard>`
   width: 100%;
   height: 22%;
   opacity: 0.8;
@@ -148,7 +137,7 @@ const PokeCardStatsSpeedIcon = styled(RiSpeedMiniFill)`
   color: #064b0b;
 `;
 
-const HeldItemsContainer = styled.div<ItemsColorProps>`
+const HeldItemsContainer = styled.div<ItemsColor>`
   ${FlexColumn};
   justify-content: center;
   align-items: center;

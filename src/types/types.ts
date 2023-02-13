@@ -7,4 +7,12 @@ type HeldItemName = {
   name: string;
 };
 
-export type { AllResult, HeldItemName };
+type PokeCard = {
+  isDarkMode: boolean;
+};
+
+type ItemsColor = {
+  itemsColor: string;
+};
+
+export type { AllResult, HeldItemName, PokeCard, ItemsColor };

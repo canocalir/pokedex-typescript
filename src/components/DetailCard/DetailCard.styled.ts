@@ -116,14 +116,18 @@ const AbilitiesSpread = styled.div<AbilityProps>`
   justify-content: center;
   p {
     background-color: ${(props) =>
-      props.abilityColor === "white" ? "#93d7da" : props.abilityColor};
+      props.abilityColor === "white" 
+      ? "#93d7da" 
+      : props.abilityColor};
     border-radius: 0.4rem;
     padding: 0.2rem;
     text-align: center;
     font-weight: 600;
     font-size: 0.8rem;
     color: ${(props) =>
-      props.abilityColor === "yellow" ? "#4e4e47" : "#ffffff"};
+      props.abilityColor === "yellow" 
+      ? "#4e4e47" 
+      : "#ffffff"};
     &:hover {
       background-color: grey;
       cursor: pointer;

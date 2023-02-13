@@ -1,10 +1,16 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setThemeMode } from "../../features/themeSlice";
-import { NavbarContainer, NavbarLogo, ThemeIconDark, ThemeIconLight } from "./Navbar.styled";
-import logo from '../../assets/pokemon-logo.png'
+import {
+  NavbarContainer,
+  NavbarLogo,
+  ThemeIconDark,
+  ThemeIconLight,
+} from "./Navbar.styled";
+import logo from "../../assets/pokemon-logo.png";
 import { Link } from "react-router-dom";
+import { FC } from "react";
 
-const Navbar = () => {
+const Navbar: FC = () => {
   const dispatch = useAppDispatch();
   const { isDarkMode } = useAppSelector((state) => state.themeChanger);
 
@@ -16,8 +22,8 @@ const Navbar = () => {
 
   return (
     <NavbarContainer isDarkMode={isDarkMode}>
-      <Link to={'/'}>
-      <NavbarLogo src={logo} alt="logo" />
+      <Link to={"/"}>
+        <NavbarLogo src={logo} alt="logo" />
       </Link>
       {conditionalThemeIcon}
     </NavbarContainer>

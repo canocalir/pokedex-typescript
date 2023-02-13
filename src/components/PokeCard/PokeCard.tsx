@@ -42,13 +42,9 @@ import rock from "../../assets/icons/rock.svg";
 import ice from "../../assets/icons/ice.svg";
 import dark from "../../assets/icons/dark.svg";
 import type { HeldItems, Moves } from "../../types/interfaces";
+import { AllResult } from "../../types/types";
 
-type PokeCardProps = {
-  name: string;
-  url: string;
-};
-
-const PokeCard = ({ name }: PokeCardProps) => {
+const PokeCard = ({ name }: AllResult) => {
   const { capitalized } = useCapitalizeLetter(name);
   const { isDarkMode } = useAppSelector((state) => state.themeChanger);
 
