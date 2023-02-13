@@ -140,6 +140,30 @@ const PokeCardStatsSpeedIcon = styled(RiSpeedMiniFill)`
   color: #064b0b;
 `;
 
+const HeldItemsContainer = styled.div`
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  label{
+    margin-top: 0.5rem;
+    font-weight: 600;
+  }
+  div{
+    display: flex;
+    gap: 0.3rem;
+  }
+  p{
+    font-size: 0.62rem;
+    background-color: red;
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+    color: #ffffff;
+    font-weight: 600;
+    text-align:center;
+  }
+`
+
 export {
   PokeCardContainer,
   PokeCardMovesSelect,
@@ -154,4 +178,5 @@ export {
   PokeCardStatsSpecialDefenseIcon,
   PokeCardStatsSpeedIcon,
   PokeCardSingleStats,
+  HeldItemsContainer
 };

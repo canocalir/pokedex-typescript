@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import {
+  HeldItemsContainer,
   PokeCardBanner,
   PokeCardButton,
   PokeCardContainer,
@@ -31,7 +32,7 @@ const PokeCard = ({ name }: PokeCardProps) => {
 
   const { data } = useGetPokemonDetailQuery(name);
   const { stats, moves } = data ?? {};
-
+console.log(data)
   const statsConditionalRender = stats?.map(
     (pokemonStat: any, index: number) => {
       const { stat, base_stat } = pokemonStat;
@@ -73,6 +74,11 @@ const PokeCard = ({ name }: PokeCardProps) => {
           name
         )}.gif`;
 
+        const heldItemsConditional = data?.held_items?.map((item:any) => {
+          const {item:{name}} = item
+          return name 
+        })
+
   return (
     <PokeCardContainer>
       {!data ? (
@@ -92,9 +98,15 @@ const PokeCard = ({ name }: PokeCardProps) => {
               return <option key={index}>{move?.name}</option>;
             })}
           </PokeCardMovesSelect>
+          {data?.held_items?.length > 0 && <HeldItemsContainer>
+            <label htmlFor="items">Items</label>
+            <div>
+            {heldItemsConditional?.map((item:any) => <p>{item}</p>)}
+            </div>
+          </HeldItemsContainer>}
           <Link state={{ data }} to={`/detail/${name}`}>
             <PokeCardButton isDarkMode={isDarkMode}>
-              Details of {capitalized}
+              Evolution of {capitalized}
             </PokeCardButton>
           </Link>
         </>
