@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 
 import { FaArrowCircleUp } from "react-icons/fa";
 
 import { ScrollToTopButton } from "./BackToTop.styled";
 
-const BackToTop = () => {
+const BackToTop: FC = () => {
   const [visible, setVisible] = useState(false);
 
   const toggleVisible = () => {
@@ -33,6 +33,6 @@ const BackToTop = () => {
       />
     </ScrollToTopButton>
   );
-}
+};
 
 export default BackToTop;

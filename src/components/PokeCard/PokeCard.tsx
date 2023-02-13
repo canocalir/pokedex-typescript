@@ -41,6 +41,7 @@ import steel from "../../assets/icons/steel.svg";
 import rock from "../../assets/icons/rock.svg";
 import ice from "../../assets/icons/ice.svg";
 import dark from "../../assets/icons/dark.svg";
+import type { HeldItems, Moves } from "../../types/interfaces";
 
 type PokeCardProps = {
   name: string;
@@ -91,7 +92,7 @@ const PokeCard = ({ name }: PokeCardProps) => {
       case "ice":
         return iconsByPokemon(ice);
       case "dark":
-        return iconsByPokemon(dark);  
+        return iconsByPokemon(dark);
     }
   });
 
@@ -143,7 +144,7 @@ const PokeCard = ({ name }: PokeCardProps) => {
         )}.gif`;
 
   //Held Items Parse Data
-  const heldItemsData = data?.held_items?.map((item: any) => {
+  const heldItemsData = data?.held_items?.map((item: HeldItems) => {
     const {
       item: { name },
     } = item;
@@ -153,7 +154,7 @@ const PokeCard = ({ name }: PokeCardProps) => {
   //Set moves into selectbox
   const movesSelectBox = (
     <PokeCardMovesSelect name="moves">
-      {moves?.map((pokemonMoves: any, index: number) => {
+      {moves?.map((pokemonMoves: Moves, index: number) => {
         const { move } = pokemonMoves;
         return <option key={index}>{move?.name}</option>;
       })}

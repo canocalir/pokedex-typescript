@@ -1,15 +1,8 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { BiDownArrow } from "react-icons/bi";
 import { TbArrowBack } from "react-icons/tb";
-
-const FlexColumn = css`
-  display: flex;
-  flex-direction: column;
-`;
-
-type AbilityProps = {
-  abilityColor: string;
-};
+import { AbilityProps } from "../../types/types";
+import { FlexColumn } from "../../styles/mixins";
 
 const DetailCardContainer = styled.div<AbilityProps>`
   display: flex;
@@ -109,7 +102,7 @@ const AbilitiesContainer = styled.div`
     margin: 0;
     font-size: 1.4rem;
   }
-  p{
+  p {
     margin: 0;
   }
 `;
@@ -120,17 +113,17 @@ const AbilitiesSpread = styled.div<AbilityProps>`
   flex-wrap: wrap;
   width: 6rem;
   justify-content: center;
-  p{
+  p {
     background-color: ${(props) =>
       props.abilityColor === "white" ? "#93d7da" : props.abilityColor};
     border-radius: 0.4rem;
     padding: 0.2rem;
-    text-align:center;
+    text-align: center;
     font-weight: 600;
     font-size: 0.8rem;
     color: ${(props) =>
       props.abilityColor === "yellow" ? "#4e4e47" : "#ffffff"};
-    &:hover{
+    &:hover {
       background-color: grey;
       cursor: pointer;
       transition: 300ms ease-in;

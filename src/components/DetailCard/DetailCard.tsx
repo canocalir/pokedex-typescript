@@ -5,7 +5,7 @@ import {
   useGetSpeciesDetailsQuery,
   useGetPokemonDetailQuery,
 } from "../../services/pokemonApi";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Spinner } from "../LoadingBar/LoadingBar.styled";
 import {
   AbilitiesContainer,
@@ -18,20 +18,21 @@ import {
   GoBackContainer,
   MainPokemonContainer,
 } from "./DetailCard.styled";
+import type { EvolutedPokemonProps } from "../../types/interfaces";
 
-const DetailCard = () => {
+const DetailCard: FC = () => {
   const [evolutionChain, setEvolutionChain] = useState<any>([]);
-  const [evolutedPokemons, setEvolutedPokemons] = useState({
-    prev: "",
-    next: "",
-  });
+  const [evolutedPokemons, setEvolutedPokemons] =
+    useState<EvolutedPokemonProps>({
+      prev: "",
+      next: "",
+    });
   const { data: prevSprite } = useGetPokemonDetailQuery(evolutedPokemons?.prev);
   const { data: nextSprite } = useGetPokemonDetailQuery(evolutedPokemons?.next);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { sprites, name, abilities, weight, height } =
-    location?.state?.data;
+  const { sprites, name, abilities, weight, height } = location?.state?.data;
   const { capitalized: pokemonName } = useCapitalizeLetter(name);
 
   const { data: species } = useGetSpeciesDetailsQuery(name ?? "");

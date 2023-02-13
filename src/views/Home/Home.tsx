@@ -4,6 +4,7 @@ import { HomePageContainer } from "./Home.styled";
 import { useGetPokemonListQuery } from "../../services/pokemonApi";
 import Navbar from "../../components/Navbar/Navbar";
 import LoadingBar from "../../components/LoadingBar/LoadingBar";
+import type { AllResult } from "../../types/types";
 
 const Home = () => {
   const [offsetNumber, setOffsetNumber] = useState(0);
@@ -29,7 +30,7 @@ const Home = () => {
     <>
       <Navbar />
       <HomePageContainer>
-        {data?.results?.map((pokemon: any, index: number) => {
+        {data?.results?.map((pokemon: AllResult, index: number) => {
           const { name, url } = pokemon ?? {};
           return <PokeCard key={index} name={name} url={url} />;
         })}
