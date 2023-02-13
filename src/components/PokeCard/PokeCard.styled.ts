@@ -10,6 +10,7 @@ import { RiSpeedMiniFill } from "react-icons/ri";
 import { theme } from "../../styles/themeVariables";
 import banner from "../../assets/banner.jpg";
 import pokeBall from "../../assets/pokeball.png";
+import { FlexColumn } from "../../styles/mixins";
 
 type PokeCardProps = {
   isDarkMode: boolean;
@@ -21,11 +22,6 @@ type ItemsColorProps = {
 
 const StatIcons = css`
   font-size: 1rem;
-`;
-
-const FlexColumn = css`
-  display: flex;
-  flex-direction: column;
 `;
 
 const PokeCardContainer = styled.div`

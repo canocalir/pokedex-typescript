@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { BiDownArrow } from "react-icons/bi";
 import { TbArrowBack } from "react-icons/tb";
-import { AbilityProps } from "../../types/types";
 import { FlexColumn } from "../../styles/mixins";
+
+import type{ AbilityProps } from "../../types/interfaces";
 
 const DetailCardContainer = styled.div<AbilityProps>`
   display: flex;
