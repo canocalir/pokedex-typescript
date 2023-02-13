@@ -25,22 +25,19 @@ const DetailCard = () => {
     prev: "",
     next: "",
   });
-  const { data: prevSprite } = useGetPokemonDetailQuery(
-    evolutedPokemons?.prev ?? ""
-  );
-  const { data: nextSprite } = useGetPokemonDetailQuery(
-    evolutedPokemons?.next ?? ""
-  );
+  const { data: prevSprite } = useGetPokemonDetailQuery(evolutedPokemons?.prev);
+  const { data: nextSprite } = useGetPokemonDetailQuery(evolutedPokemons?.next);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { sprites, name, abilities } = location?.state?.data ?? {};
+  const { sprites, name, abilities, weight, height } =
+    location?.state?.data;
   const { capitalized: pokemonName } = useCapitalizeLetter(name);
 
-  const { data: species } = useGetSpeciesDetailsQuery(name);
+  const { data: species } = useGetSpeciesDetailsQuery(name ?? "");
   const url = species?.evolution_chain?.url;
   const { data: evolution } = useGetEvolutionDataQuery(url ?? "");
-  
+
   //Get evoluted pokemon sprites
   const prevAvatar = prevSprite?.sprites?.other?.dream_world?.front_default;
   const nextAvatar = nextSprite?.sprites?.other?.dream_world?.front_default;
@@ -80,6 +77,7 @@ const DetailCard = () => {
   }, [evolutionChain]);
 
   const itemColor = species?.color?.name;
+  console.log(weight, height);
 
   return (
     <DetailCardContainer abilityColor={itemColor}>
@@ -131,6 +129,10 @@ const DetailCard = () => {
             return <p key={index}>{ability?.ability?.name}</p>;
           })}
         </AbilitiesSpread>
+        <h3>Weight</h3>
+        <p>{weight} Pounds</p>
+        <h3>Height</h3>
+        <p>{height} Feet</p>
       </AbilitiesContainer>
     </DetailCardContainer>
   );

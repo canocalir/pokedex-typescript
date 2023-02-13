@@ -104,16 +104,22 @@ const AbilitiesContainer = styled.div`
   ${FlexColumn};
   justify-content: center;
   align-items: center;
+  gap: 1rem;
   h3 {
     margin: 0;
     font-size: 1.4rem;
+  }
+  p{
+    margin: 0;
   }
 `;
 
 const AbilitiesSpread = styled.div<AbilityProps>`
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
+  width: 6rem;
+  justify-content: center;
   p{
     background-color: ${(props) =>
       props.abilityColor === "white" ? "#93d7da" : props.abilityColor};
@@ -121,6 +127,7 @@ const AbilitiesSpread = styled.div<AbilityProps>`
     padding: 0.2rem;
     text-align:center;
     font-weight: 600;
+    font-size: 0.8rem;
     color: ${(props) =>
       props.abilityColor === "yellow" ? "#4e4e47" : "#ffffff"};
     &:hover{
@@ -128,6 +135,7 @@ const AbilitiesSpread = styled.div<AbilityProps>`
       cursor: pointer;
       transition: 300ms ease-in;
     }
+  }
 `;
 
 export {

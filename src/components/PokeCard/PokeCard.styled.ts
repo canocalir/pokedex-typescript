@@ -44,6 +44,10 @@ const PokeCardContainer = styled.div`
     color: ${theme.pokeCardNameColor};
     margin: 0;
   }
+  label {
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
 `;
 
 const PokeCardButton = styled.button<PokeCardProps>`

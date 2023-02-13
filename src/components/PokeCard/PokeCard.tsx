@@ -54,7 +54,6 @@ const PokeCard = ({ name }: PokeCardProps) => {
   const { data } = useGetPokemonDetailQuery(name);
   const { stats, moves } = data ?? {};
   const { data: species } = useGetSpeciesDetailsQuery(name);
-  console.log();
 
   //Get Pokemon Types
   const pokemonTypes = data?.types?.map((pokemonType: any, index: number) => {
