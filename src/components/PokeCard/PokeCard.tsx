@@ -92,7 +92,7 @@ const PokeCard = ({ name }: PokeCardProps) => {
               return <option key={index}>{move?.name}</option>;
             })}
           </PokeCardMovesSelect>
-          <Link state={{data}} to={`/detail/${name}`}>
+          <Link state={{ data }} to={`/detail/${name}`}>
             <PokeCardButton isDarkMode={isDarkMode}>
               Details of {capitalized}
             </PokeCardButton>

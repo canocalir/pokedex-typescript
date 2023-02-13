@@ -3,11 +3,23 @@ import useCapitalizeLetter from "../../hooks/useCapitalizeLetter";
 import {
   useGetEvolutionDataQuery,
   useGetSpeciesDetailsQuery,
+  useGetPokemonDetailQuery,
 } from "../../services/pokemonApi";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { Spinner } from "../LoadingBar/LoadingBar.styled";
 
 const DetailCard = () => {
   const [evolutionChain, setEvolutionChain] = useState<any>([]);
+  const [evolutedPokemons, setEvolutedPokemons] = useState({
+    prev: "",
+    next: "",
+  });
+  const { data: prevSprite } = useGetPokemonDetailQuery(
+    evolutedPokemons?.prev ?? ""
+  );
+  const { data: nextSprite } = useGetPokemonDetailQuery(
+    evolutedPokemons?.next ?? ""
+  );
   const location = useLocation();
   const navigate = useNavigate();
   const { sprites, name, abilities } = location?.state?.data ?? {};
@@ -15,6 +27,22 @@ const DetailCard = () => {
   const { data: species } = useGetSpeciesDetailsQuery(name);
   const url = species?.evolution_chain?.url;
   const { data: evolution } = useGetEvolutionDataQuery(url ?? "");
+
+  const findEvolutedPokemons = () => {
+    const currentIndex = evolutionChain?.findIndex(
+      (species: any) => species?.name == name
+    );
+    setEvolutedPokemons({
+      ...evolutedPokemons,
+      prev: currentIndex > 0 && evolutionChain[currentIndex - 1]?.name,
+      next:
+        currentIndex < evolutionChain.length - 1 &&
+        evolutionChain[currentIndex + 1]?.name,
+    });
+  };
+
+  const prevAvatar = prevSprite?.sprites?.front_default;
+  const nextAvatar = nextSprite?.sprites?.front_default;
 
   useEffect(() => {
     const getEvolutionChain = (data: any) => {
@@ -33,26 +61,27 @@ const DetailCard = () => {
     }
   }, [evolution]);
 
-  const currentIndex = evolutionChain?.findIndex(
-    (species: any) => species?.name == name
-  );
-
-  const previousPokemon =
-    currentIndex > 0 ? evolutionChain[currentIndex - 1]?.name : "Base Pokemon";
-  const nextPokemon =
-    currentIndex < evolutionChain.length - 1
-      ? evolutionChain[currentIndex + 1]?.name
-      : "None";
+  useEffect(() => {
+    findEvolutedPokemons();
+  }, [evolutionChain]);
 
   return (
     <>
       <h1>{pokemonName}</h1>
-      <img src={"avatar"} alt="prevEvo" />
-      <h3>Previous Evolution</h3>
-      <p>{previousPokemon}</p>
-      <h3>Next Evolution</h3>
-      <img src={"avatar"} alt="nextEvo" />
-      <p>{nextPokemon}</p>
+      {prevAvatar && (
+        <>
+          <h3>Previous Evolution</h3>
+          <p>{evolutedPokemons?.prev}</p>
+          {prevAvatar ? <img src={prevAvatar} alt="prevEvo" /> : <Spinner />}
+        </>
+      )}
+      {nextAvatar && (
+        <>
+          <h3>Next Evolution</h3>
+          {nextAvatar ? <img src={nextAvatar} alt="nextEvo" /> : <Spinner />}
+          <p>{evolutedPokemons?.next}</p>
+        </>
+      )}
       <img
         src={sprites?.other?.dream_world?.front_default}
         alt="pokemon-detail-image"
