@@ -6,20 +6,3 @@ export const DetailPageContainer = styled.div`
     align-items: center;
     height: 100vh;
 `
-
-export const DetailCardContainer = styled.div`
-    display: flex;
-    background-color: #ffffff;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-    width: 20rem;
-    padding: 2rem;
-    gap: 2rem;
-    >img{
-        width: 100px;
-    }
-    >h1{
-        margin: 0;
-    }
-`

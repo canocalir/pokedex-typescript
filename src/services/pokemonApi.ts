@@ -11,19 +11,28 @@ export const pokemonApi = createApi({
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
-      // Always merge incoming data to the cache entry
       merge: (currentCache, newItems) => {
         currentCache.results.push(...newItems.results);
       },
-      // Refetch when the page arg changes
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
-      }
+      },
     }),
     getPokemonDetail: builder.query({
-        query: (name) => `pokemon/${name}`
+      query: (name) => `pokemon/${name}`,
+    }),
+    getSpeciesDetails: builder.query({
+      query: (name) => `pokemon-species/${name}`
+    }),
+    getEvolutionData: builder.query({
+      query: (url) => `${url}`
     })
   }),
 });
 
-export const { useGetPokemonListQuery, useGetPokemonDetailQuery } = pokemonApi
+export const {
+  useGetPokemonListQuery,
+  useGetPokemonDetailQuery,
+  useGetSpeciesDetailsQuery,
+  useGetEvolutionDataQuery
+} = pokemonApi;

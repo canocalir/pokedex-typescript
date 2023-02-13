@@ -30,6 +30,7 @@ const PokeCardContainer = styled.div`
   width: 18rem;
   border-radius: 1rem;
   position: relative;
+  padding: 0.5rem;
   > h2 {
     color: ${theme.pokeCardNameColor};
     margin: 0;
@@ -42,7 +43,7 @@ const PokeCardButton = styled.button<PokeCardProps>`
     props.isDarkMode ? theme.pokeCardButtonDark : theme.pokeCardButtonLight};
   color: ${(props) => (props.isDarkMode ? "#ffffff" : "#242424")};
   font-weight: 600;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 0.8rem;
   width: 15rem;
   cursor: pointer;

@@ -8,7 +8,7 @@ import LoadingBar from "../../components/LoadingBar/LoadingBar";
 const Home = () => {
   const [offsetNumber, setOffsetNumber] = useState(0);
   const { data, isFetching } = useGetPokemonListQuery(offsetNumber);
-  
+
   useEffect(() => {
     const onScroll = () => {
       const scrolledToBottom =
@@ -29,11 +29,11 @@ const Home = () => {
     <>
       <Navbar />
       <HomePageContainer>
-        {data?.results?.map((pokemon: any, index:number) => {
+        {data?.results?.map((pokemon: any, index: number) => {
           const { name, url } = pokemon ?? {};
           return <PokeCard key={index} name={name} url={url} />;
         })}
-        {!isFetching && <LoadingBar/>}
+        {!isFetching && <LoadingBar />}
       </HomePageContainer>
     </>
   );
