@@ -3,8 +3,6 @@ import loadball from "../../assets/load_ball.png"
 
 export const LoadingBarContainer = styled.div`
   width: 100%;
-  background-color: #ffffff41;
-  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
