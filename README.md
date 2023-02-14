@@ -1,17 +1,17 @@
 # React-Typescript Pokemon App
 
-## Features
+## Elements
+### Pokemon Card
+
+### Pokemon Evolution
+
+
+### Used Tech and Libraries
+* React JS
 * Used React Router Dom for routing.
 * Powered by Typescript
 * Styled Components used for modular stying with Pure CSS
 * Redux Toolkit / RTK Query used for data fetching and caching.
-
-### Used Tech and Libraries
-* React JS
-* Redux Toolkit
-* ReactRouterDOM
-* TypeScript
-* Styled Components
 
 ## [Click here for live demo](https://pokedex-typescript-chi.vercel.app/)
 
