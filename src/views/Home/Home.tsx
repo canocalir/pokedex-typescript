@@ -1,9 +1,7 @@
 import { FC, useEffect, useState } from "react";
-import PokeCard from "../../components/PokeCard/PokeCard";
 import { HomePageContainer } from "./Home.styled";
 import { useGetPokemonListQuery } from "../../services/pokemonApi";
-import Navbar from "../../components/Navbar/Navbar";
-import LoadingBar from "../../components/LoadingBar/LoadingBar";
+import {Navbar, PokeCard, LoadingBar} from "./index"
 import type { AllResult } from "../../types/types";
 
 const Home:FC = () => {

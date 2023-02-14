@@ -16,6 +16,7 @@ import {
   PokeCardStatsSpecialDefenseIcon,
   PokeCardStatsSpeedIcon,
 } from "./PokeCard.styled";
+
 import useCapitalizeLetter from "../../hooks/useCapitalizeLetter";
 import { Spinner } from "../LoadingBar/LoadingBar.styled";
 import { urlCorrector } from "../../utils/utils";

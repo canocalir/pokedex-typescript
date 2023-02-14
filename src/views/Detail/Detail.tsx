@@ -1,5 +1,4 @@
-import Navbar from "../../components/Navbar/Navbar";
-import DetailCard from "../../components/DetailCard/DetailCard";
+import {Navbar, DetailCard} from "./index";
 import { DetailPageContainer } from "./Detail.styled";
 import { FC } from "react";
 const Detail:FC = () => {

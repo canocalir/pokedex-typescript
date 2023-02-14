@@ -1,10 +1,10 @@
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import styled from "styled-components";
 import { theme } from "../../styles/themeVariables";
-import type { NavbarProps } from "../../types/types";
+import type { Theme } from "../../types/types";
 import { IconStyle } from "../../styles/mixins";
 
-const NavbarContainer = styled.div<NavbarProps>`
+const NavbarContainer = styled.div<Theme>`
   display: flex;
   justify-content: space-around;
   align-items: center;
