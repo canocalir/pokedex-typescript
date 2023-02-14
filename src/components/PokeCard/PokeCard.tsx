@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {
   HeldItemsContainer,
+  PokeBallImage,
   PokeCardBanner,
   PokeCardButton,
   PokeCardContainer,
@@ -25,6 +26,8 @@ import {
   useGetPokemonDetailQuery,
   useGetSpeciesDetailsQuery,
 } from "../../services/pokemonApi";
+
+import pokeBall from "../../assets/pokeball.png";
 
 //Pokemon Icons by Types
 import ground from "../../assets/icons/ground.svg";
@@ -174,6 +177,7 @@ const PokeCard = ({ name }: AllResult) => {
           <PokeCardIconsContainer>{pokemonTypes}</PokeCardIconsContainer>
           <PokeCardBanner isDarkMode={isDarkMode} />
           <PokeCardImage isDarkMode={isDarkMode} src={avatar} />
+          <PokeBallImage src={pokeBall} alt="hello"/>
           <PokeCardStatsContainer>
             {statsConditionalRender}
           </PokeCardStatsContainer>

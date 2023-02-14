@@ -9,7 +9,7 @@ import {
 import { RiSpeedMiniFill } from "react-icons/ri";
 import { theme } from "../../styles/themeVariables";
 import banner from "../../assets/banner.jpg";
-import pokeBall from "../../assets/pokeball.png";
+
 import { FlexColumn, StatIcons } from "../../styles/mixins";
 import type { ItemsColor, Theme } from "../../types/types";
 
@@ -57,16 +57,18 @@ const PokeCardButton = styled.button<Theme>`
 
 const PokeCardImage = styled.img<Theme>`
   height: 20%;
-  background-color: #ffffff;
-  background: url(${pokeBall});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   border-radius: 45%;
   padding: 2.2rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   z-index: 1;
+  position: relative;
 `;
+
+const PokeBallImage = styled.img`
+  position: absolute;
+  top: 1rem;
+  height: 9rem;
+`
 
 const PokeCardBanner = styled.img<Theme>`
   width: 100%;
@@ -202,4 +204,5 @@ export {
   PokeCardSingleStats,
   HeldItemsContainer,
   PokeCardIconsContainer,
+  PokeBallImage
 };
