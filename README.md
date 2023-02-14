@@ -23,6 +23,12 @@
  
 ### Pokemon Evolution
 ![evocard](https://user-images.githubusercontent.com/11324886/218634885-4878f080-e505-460a-9202-f03f8035b0c0.png)
+###### Evolution element contains:
+* Pokemon Evolve Stages
+* Pokemon Abilities(color by type)
+* Pokemon Evolve Names
+* Pokemon Evolve Images
+* Pokemon Weight and Height
 
 ## License
 
