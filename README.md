@@ -12,6 +12,7 @@
 ![pokemon-new](https://user-images.githubusercontent.com/11324886/218631430-9453920e-dc7d-4421-93bc-7b9c33808a84.gif)
 
 ## Folder Structure
+```bash
 ├── public
 │   └── favicon.svg
 ├── README.md
@@ -95,6 +96,7 @@
 ├── tsconfig.node.json
 ├── vite.config.ts
 └── yarn.lock
+```
 
 ## Elements
 ### Pokemon Card
