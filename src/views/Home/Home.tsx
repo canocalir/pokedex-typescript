@@ -12,7 +12,7 @@ const Home:FC = () => {
   useEffect(() => {
     const onScroll = () => {
       const scrolledToBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight;
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 1;
       if (scrolledToBottom && !isFetching) {
         setOffsetNumber(offsetNumber + 1);
       }

@@ -16,9 +16,9 @@ test("Change theme", async () => {
 
   const lightModeButton = screen.getByTestId("light");
   fireEvent.click(lightModeButton);
-  expect(screen.getByTestId("navbar").style.backgroundColor)
+  expect(screen.getByTestId("navbar"))
 
   const darkModeButton = screen.getByTestId("dark");
   fireEvent.click(darkModeButton);
-  expect(screen.getByTestId("navbar").style.backgroundColor)
+  expect(screen.getByTestId("navbar"))
 });
