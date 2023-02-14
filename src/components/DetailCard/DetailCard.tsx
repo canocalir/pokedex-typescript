@@ -18,20 +18,30 @@ import {
   GoBackContainer,
   MainPokemonContainer,
 } from "./DetailCard.styled";
-import type { EvolutedPokemonProps } from "../../types/interfaces";
+import type {
+  Ability,
+  EvoChain,
+  EvolutedPokemonProps,
+  Species,
+} from "../../types/interfaces";
 
 const DetailCard: FC = () => {
   const [evolutionChain, setEvolutionChain] = useState<any>([]);
+
   const [evolutedPokemons, setEvolutedPokemons] =
     useState<EvolutedPokemonProps>({
       prev: "",
       next: "",
     });
+
+  //Fetch Evoluted Pokemon Sprites
   const { data: prevSprite } = useGetPokemonDetailQuery(evolutedPokemons?.prev);
   const { data: nextSprite } = useGetPokemonDetailQuery(evolutedPokemons?.next);
+
   const location = useLocation();
   const navigate = useNavigate();
 
+  //Get Data From the React Router
   const { sprites, name, abilities, weight, height } = location?.state?.data;
   const { capitalized: pokemonName } = useCapitalizeLetter(name);
 
@@ -44,8 +54,8 @@ const DetailCard: FC = () => {
   const nextAvatar = nextSprite?.sprites?.other?.dream_world?.front_default;
 
   useEffect(() => {
-    const getEvolutionChain = (data: any) => {
-      const chain: any = [data?.species];
+    const getEvolutionChain = (data: EvoChain) => {
+      const chain = [data?.species];
       let evolvesTo = data?.evolves_to;
 
       while (evolvesTo?.length) {
@@ -63,7 +73,7 @@ const DetailCard: FC = () => {
   //Find Evoluted Pokemons of current pokemon
   const findEvolutedPokemons = () => {
     const currentIndex = evolutionChain?.findIndex(
-      (species: any) => species?.name == name
+      (species: Species) => species?.name == name
     );
     setEvolutedPokemons({
       ...evolutedPokemons,
@@ -77,10 +87,13 @@ const DetailCard: FC = () => {
     findEvolutedPokemons();
   }, [evolutionChain]);
 
+  //Get Color Data by Pokemon
   const itemColor = species?.color?.name;
 
   return (
     <DetailCardContainer abilityColor={itemColor}>
+      {!species ? <Spinner /> :
+      <>
       <GoBackContainer onClick={() => navigate(-1)}>
         <GoBackButton />
         <p>Go Back</p>
@@ -125,7 +138,7 @@ const DetailCard: FC = () => {
       <AbilitiesContainer>
         <h3>Abilities</h3>
         <AbilitiesSpread abilityColor={itemColor}>
-          {abilities?.map((ability: any, index: number) => {
+          {abilities?.map((ability: Ability, index: number) => {
             return <p key={index}>{ability?.ability?.name}</p>;
           })}
         </AbilitiesSpread>
@@ -134,6 +147,9 @@ const DetailCard: FC = () => {
         <h3>Height</h3>
         <p>{height} Feet</p>
       </AbilitiesContainer>
+      </>
+      }
+      
     </DetailCardContainer>
   );
 };

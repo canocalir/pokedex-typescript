@@ -1,15 +1,8 @@
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { theme } from "../../styles/themeVariables";
-
-const IconStyle = css`
-  font-size: 1.8rem;
-  cursor: pointer;
-`;
-
-type NavbarProps = {
-  isDarkMode: boolean;
-};
+import type { NavbarProps } from "../../types/types";
+import { IconStyle } from "../../styles/mixins";
 
 const NavbarContainer = styled.div<NavbarProps>`
   display: flex;
@@ -39,4 +32,9 @@ const ThemeIconDark = styled(MdDarkMode)`
   ${IconStyle};
   color: #999fe9;
 `;
-export { NavbarContainer, ThemeIconDark, ThemeIconLight, NavbarLogo };
+
+export { 
+  NavbarContainer, 
+  ThemeIconDark, 
+  ThemeIconLight, 
+  NavbarLogo };

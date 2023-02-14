@@ -11,7 +11,7 @@ import { theme } from "../../styles/themeVariables";
 import banner from "../../assets/banner.jpg";
 import pokeBall from "../../assets/pokeball.png";
 import { FlexColumn, StatIcons } from "../../styles/mixins";
-import type { ItemsColor, PokeCard } from "../../types/types";
+import type { ItemsColor, Theme } from "../../types/types";
 
 const PokeCardContainer = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ const PokeCardContainer = styled.div`
   }
 `;
 
-const PokeCardButton = styled.button<PokeCard>`
+const PokeCardButton = styled.button<Theme>`
   border: none;
   background-color: ${(props) =>
     props.isDarkMode ? theme.pokeCardButtonDark : theme.pokeCardButtonLight};
@@ -55,7 +55,7 @@ const PokeCardButton = styled.button<PokeCard>`
   }
 `;
 
-const PokeCardImage = styled.img<PokeCard>`
+const PokeCardImage = styled.img<Theme>`
   height: 20%;
   background-color: #ffffff;
   background: url(${pokeBall});
@@ -68,7 +68,7 @@ const PokeCardImage = styled.img<PokeCard>`
   z-index: 1;
 `;
 
-const PokeCardBanner = styled.img<PokeCard>`
+const PokeCardBanner = styled.img<Theme>`
   width: 100%;
   height: 22%;
   opacity: 0.8;
@@ -79,7 +79,9 @@ const PokeCardBanner = styled.img<PokeCard>`
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   border-bottom: 0.2rem solid
-    ${(props) => (props.isDarkMode ? "#5e34d1" : "#f6c501")};
+    ${(props) => (props.isDarkMode 
+    ? "#5e34d1" 
+    : "#f6c501")};
 `;
 
 const PokeCardMovesSelect = styled.select`
@@ -153,11 +155,15 @@ const HeldItemsContainer = styled.div<ItemsColor>`
   p {
     font-size: 0.62rem;
     background-color: ${(props) =>
-      props.itemsColor === "white" ? "#93d7da" : props.itemsColor};
+      props.itemsColor === "white" 
+      ? "#93d7da" 
+      : props.itemsColor};
     border-radius: 0.3rem;
     padding: 0.2rem;
     color: ${(props) =>
-      props.itemsColor === "yellow" ? "#4e4e47" : "#ffffff"};
+      props.itemsColor === "yellow" 
+      ? "#4e4e47" 
+      : "#ffffff"};
     font-weight: 600;
     text-align: center;
     margin: 0;

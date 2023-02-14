@@ -1,6 +1,7 @@
+import { FC } from "react"
 import { LoadingBarContainer, Spinner } from "./LoadingBar.styled"
 
-const LoadingBar = () => {
+const LoadingBar: FC = () => {
   return (
     <LoadingBarContainer>
         <Spinner/>

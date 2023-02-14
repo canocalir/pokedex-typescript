@@ -3,7 +3,7 @@ import { BiDownArrow } from "react-icons/bi";
 import { TbArrowBack } from "react-icons/tb";
 import { FlexColumn } from "../../styles/mixins";
 
-import type{ AbilityProps } from "../../types/interfaces";
+import type { AbilityProps } from "../../types/interfaces";
 
 const DetailCardContainer = styled.div<AbilityProps>`
   display: flex;
@@ -116,18 +116,14 @@ const AbilitiesSpread = styled.div<AbilityProps>`
   justify-content: center;
   p {
     background-color: ${(props) =>
-      props.abilityColor === "white" 
-      ? "#93d7da" 
-      : props.abilityColor};
+      props.abilityColor === "white" ? "#93d7da" : props.abilityColor};
     border-radius: 0.4rem;
     padding: 0.2rem;
     text-align: center;
     font-weight: 600;
     font-size: 0.8rem;
     color: ${(props) =>
-      props.abilityColor === "yellow" 
-      ? "#4e4e47" 
-      : "#ffffff"};
+      props.abilityColor === "yellow" ? "#4e4e47" : "#ffffff"};
     &:hover {
       background-color: grey;
       cursor: pointer;

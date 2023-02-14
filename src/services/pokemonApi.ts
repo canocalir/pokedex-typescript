@@ -7,7 +7,7 @@ export const pokemonApi = createApi({
   }),
   endpoints: (builder) => ({
     getPokemonList: builder.query({
-      query: (offsetNumber) => `pokemon?offset=${offsetNumber * 20}&limit=30`,
+      query: (offsetNumber:number) => `pokemon?offset=${offsetNumber * 20}&limit=30`,
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
@@ -19,13 +19,13 @@ export const pokemonApi = createApi({
       },
     }),
     getPokemonDetail: builder.query({
-      query: (name) => `pokemon/${name}`,
+      query: (name:string) => `pokemon/${name}`,
     }),
     getSpeciesDetails: builder.query({
-      query: (name) => `pokemon-species/${name}`
+      query: (name:string) => `pokemon-species/${name}`
     }),
     getEvolutionData: builder.query({
-      query: (url) => `${url}`
+      query: (url:string) => `${url}`
     })
   }),
 });

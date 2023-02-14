@@ -41,7 +41,12 @@ import steel from "../../assets/icons/steel.svg";
 import rock from "../../assets/icons/rock.svg";
 import ice from "../../assets/icons/ice.svg";
 import dark from "../../assets/icons/dark.svg";
-import type { HeldItems, Moves } from "../../types/interfaces";
+import type {
+  HeldItems,
+  Moves,
+  PokemonStats,
+  PokemonType,
+} from "../../types/interfaces";
 import { AllResult } from "../../types/types";
 
 const PokeCard = ({ name }: AllResult) => {
@@ -53,51 +58,53 @@ const PokeCard = ({ name }: AllResult) => {
   const { data: species } = useGetSpeciesDetailsQuery(name);
 
   //Get Pokemon Types
-  const pokemonTypes = data?.types?.map((pokemonType: any, index: number) => {
-    const { type } = pokemonType;
-    const iconsByPokemon = (iconUrl: string) => {
-      return <img key={index} src={iconUrl} />;
-    };
-    switch (type?.name) {
-      case "ground":
-        return iconsByPokemon(ground);
-      case "flying":
-        return iconsByPokemon(flying);
-      case "electric":
-        return iconsByPokemon(electric);
-      case "poison":
-        return iconsByPokemon(poison);
-      case "normal":
-        return iconsByPokemon(normal);
-      case "fire":
-        return iconsByPokemon(fire);
-      case "fairy":
-        return iconsByPokemon(fairy);
-      case "bug":
-        return iconsByPokemon(bug);
-      case "psychic":
-        return iconsByPokemon(psychic);
-      case "fighting":
-        return iconsByPokemon(fighting);
-      case "water":
-        return iconsByPokemon(water);
-      case "steel":
-        return iconsByPokemon(steel);
-      case "rock":
-        return iconsByPokemon(rock);
-      case "ice":
-        return iconsByPokemon(ice);
-      case "dark":
-        return iconsByPokemon(dark);
+  const pokemonTypes = data?.types?.map(
+    (pokemonType: PokemonType, index: number) => {
+      const { type } = pokemonType;
+      const iconsByPokemon = (iconUrl: string) => {
+        return <img key={index} src={iconUrl} />;
+      };
+      switch (type?.name) {
+        case "ground":
+          return iconsByPokemon(ground);
+        case "flying":
+          return iconsByPokemon(flying);
+        case "electric":
+          return iconsByPokemon(electric);
+        case "poison":
+          return iconsByPokemon(poison);
+        case "normal":
+          return iconsByPokemon(normal);
+        case "fire":
+          return iconsByPokemon(fire);
+        case "fairy":
+          return iconsByPokemon(fairy);
+        case "bug":
+          return iconsByPokemon(bug);
+        case "psychic":
+          return iconsByPokemon(psychic);
+        case "fighting":
+          return iconsByPokemon(fighting);
+        case "water":
+          return iconsByPokemon(water);
+        case "steel":
+          return iconsByPokemon(steel);
+        case "rock":
+          return iconsByPokemon(rock);
+        case "ice":
+          return iconsByPokemon(ice);
+        case "dark":
+          return iconsByPokemon(dark);
+      }
     }
-  });
+  );
 
   //Get Items Background Color By Type
   const itemColor = species?.color?.name;
 
   //Stats by Icon Conditional
   const statsConditionalRender = stats?.map(
-    (pokemonStat: any, index: number) => {
+    (pokemonStat: PokemonStats, index: number) => {
       const { stat, base_stat } = pokemonStat;
       //Conditionally render icons by stats
       const iconsByStat = (icon: React.ReactNode) => {
@@ -176,7 +183,7 @@ const PokeCard = ({ name }: AllResult) => {
             <label htmlFor="items">Items</label>
             {data?.held_items?.length > 0 ? (
               <div>
-                {heldItemsData?.map((item: any, index: number) => (
+                {heldItemsData?.map((item: any[], index: number) => (
                   <p key={index}>{item}</p>
                 ))}
               </div>

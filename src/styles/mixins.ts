@@ -8,3 +8,8 @@ export const FlexColumn = css`
 export const StatIcons = css`
   font-size: 1rem;
 `;
+
+export const IconStyle = css`
+  font-size: 1.8rem;
+  cursor: pointer;
+`;
