@@ -1,11 +1,5 @@
 # React-Typescript Pokemon App
 
-## Elements
-### Pokemon Card
-![pokecard](https://user-images.githubusercontent.com/11324886/218634857-7e1c7e87-3af5-483e-8a2f-f5bdb94347ff.png)
-### Pokemon Evolution
-![evocard](https://user-images.githubusercontent.com/11324886/218634885-4878f080-e505-460a-9202-f03f8035b0c0.png)
-
 ### Used Tech and Libraries
 * React JS
 * Used React Router Dom for routing.
@@ -16,6 +10,12 @@
 ## [Click here for live demo](https://pokedex-typescript-chi.vercel.app/)
 
 ![pokemon-new](https://user-images.githubusercontent.com/11324886/218631430-9453920e-dc7d-4421-93bc-7b9c33808a84.gif)
+
+## Elements
+### Pokemon Card
+![pokecard](https://user-images.githubusercontent.com/11324886/218634857-7e1c7e87-3af5-483e-8a2f-f5bdb94347ff.png)
+### Pokemon Evolution
+![evocard](https://user-images.githubusercontent.com/11324886/218634885-4878f080-e505-460a-9202-f03f8035b0c0.png)
 
 ## License
 
