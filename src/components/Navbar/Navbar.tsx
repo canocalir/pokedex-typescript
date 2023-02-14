@@ -15,13 +15,13 @@ const Navbar: FC = () => {
   const { isDarkMode } = useAppSelector((state) => state.themeChanger);
 
   const conditionalThemeIcon = isDarkMode ? (
-    <ThemeIconLight onClick={() => dispatch(setThemeMode())} />
+    <ThemeIconLight data-testid="light" onClick={() => dispatch(setThemeMode())} />
   ) : (
-    <ThemeIconDark onClick={() => dispatch(setThemeMode())} />
+    <ThemeIconDark data-testid="dark" onClick={() => dispatch(setThemeMode())} />
   );
 
   return (
-    <NavbarContainer isDarkMode={isDarkMode}>
+    <NavbarContainer data-testid="navbar" isDarkMode={isDarkMode}>
       <Link to={"/"}>
         <NavbarLogo src={logo} alt="logo" />
       </Link>

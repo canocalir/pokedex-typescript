@@ -12,7 +12,7 @@ type ItemsColor = {
 };
 
 type Theme = {
-  isDarkMode: boolean;
+  isDarkMode?: boolean;
 };
 
 export type { 
