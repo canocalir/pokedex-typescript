@@ -59,7 +59,6 @@ const PokeCardImage = styled.img<Theme>`
   height: 20%;
   border-radius: 45%;
   padding: 2.2rem;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   z-index: 1;
   position: relative;
 `;
