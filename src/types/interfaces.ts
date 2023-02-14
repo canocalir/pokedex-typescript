@@ -9,7 +9,7 @@ interface Moves {
   };
 }
 interface AbilityProps {
-  abilityColor: string;
+  abilityColor?: string;
 }
 interface EvolutedPokemonProps {
   prev: string;

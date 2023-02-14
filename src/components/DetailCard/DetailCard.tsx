@@ -44,7 +44,7 @@ const DetailCard: FC = () => {
   //Get Data From the React Router
   const { sprites, name, abilities, weight, height } = location?.state?.data;
   const { capitalized: pokemonName } = useCapitalizeLetter(name);
-
+console.log(location)
   const { data: species } = useGetSpeciesDetailsQuery(name ?? "");
   const url = species?.evolution_chain?.url;
   const { data: evolution } = useGetEvolutionDataQuery(url ?? "");
@@ -95,7 +95,7 @@ const DetailCard: FC = () => {
       {!species ? <Spinner /> :
       <>
       <GoBackContainer onClick={() => navigate(-1)}>
-        <GoBackButton />
+        <GoBackButton data-testid="backbutton"/>
         <p>Go Back</p>
       </GoBackContainer>
       <EvolutionContainer>
@@ -115,7 +115,7 @@ const DetailCard: FC = () => {
         </EvolutedPokemonContainer>
         <MainPokemonContainer abilityColor={itemColor}>
           <img
-            src={sprites?.other?.dream_world?.front_default}
+            src={sprites?.other?.dream_world?.front_default ?? ''}
             alt="pokemon-detail-image"
           />
           <h1>{pokemonName}</h1>
