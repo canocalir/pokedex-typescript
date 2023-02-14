@@ -14,6 +14,13 @@
 ## Elements
 ### Pokemon Card
 ![pokecard](https://user-images.githubusercontent.com/11324886/218634857-7e1c7e87-3af5-483e-8a2f-f5bdb94347ff.png)
+###### Card element contains:
+ * Pokemon Type Icon
+ * Pokemon Animated Gif
+ * Pokemon Stats
+ * Pokemon Moves
+ * Pokemon Items(if any)
+ 
 ### Pokemon Evolution
 ![evocard](https://user-images.githubusercontent.com/11324886/218634885-4878f080-e505-460a-9202-f03f8035b0c0.png)
 
