@@ -1,5 +1,11 @@
 # React-Typescript Pokemon App
 
+## Features
+* Used React Router Dom for routing.
+* Powered by Typescript
+* Styled Components used for modular stying with Pure CSS
+* Redux Toolkit / RTK Query used for data fetching and caching.
+
 ### Used Tech and Libraries
 * React JS
 * Redux Toolkit
