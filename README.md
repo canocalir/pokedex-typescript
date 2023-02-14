@@ -11,6 +11,91 @@
 
 ![pokemon-new](https://user-images.githubusercontent.com/11324886/218631430-9453920e-dc7d-4421-93bc-7b9c33808a84.gif)
 
+## Folder Structure
+├── public
+│   └── favicon.svg
+├── README.md
+├── src
+│   ├── app
+│   │   ├── hooks.ts
+│   │   └── store.ts
+│   ├── App.tsx
+│   ├── assets
+│   │   ├── banner.jpg
+│   │   ├── icons
+│   │   │   ├── bug.png
+│   │   │   ├── dark.svg
+│   │   │   ├── electric.svg
+│   │   │   ├── fairy.svg
+│   │   │   ├── fighting.svg
+│   │   │   ├── fire.png
+│   │   │   ├── flying.png
+│   │   │   ├── ground.svg
+│   │   │   ├── ice.svg
+│   │   │   ├── normal.svg
+│   │   │   ├── poison.svg
+│   │   │   ├── psy.svg
+│   │   │   ├── rock.svg
+│   │   │   ├── steel.svg
+│   │   │   └── water.svg
+│   │   ├── load_ball.png
+│   │   ├── pokeball.png
+│   │   └── pokemon-logo.png
+│   ├── components
+│   │   ├── BackToTop
+│   │   │   ├── BackToTop.styled.ts
+│   │   │   └── BackToTop.tsx
+│   │   ├── DetailCard
+│   │   │   ├── DetailCard.styled.ts
+│   │   │   └── DetailCard.tsx
+│   │   ├── LoadingBar
+│   │   │   ├── LoadingBar.styled.ts
+│   │   │   └── LoadingBar.tsx
+│   │   ├── Navbar
+│   │   │   ├── Navbar.styled.ts
+│   │   │   └── Navbar.tsx
+│   │   └── PokeCard
+│   │       ├── PokeCard.styled.ts
+│   │       └── PokeCard.tsx
+│   ├── features
+│   │   └── themeSlice.ts
+│   ├── hooks
+│   │   └── useCapitalizeLetter.ts
+│   ├── index.css
+│   ├── main.tsx
+│   ├── router
+│   │   └── AppRouter.tsx
+│   ├── services
+│   │   └── pokemonApi.ts
+│   ├── styles
+│   │   ├── globalStyles.ts
+│   │   ├── mixins.ts
+│   │   └── themeVariables.ts
+│   ├── tests
+│   │   ├── App.test.tsx
+│   │   ├── Navbar.test.tsx
+│   │   └── PokeCard.test.tsx
+│   ├── types
+│   │   ├── interfaces.ts
+│   │   └── types.ts
+│   ├── utils
+│   │   └── utils.ts
+│   ├── views
+│   │   ├── Detail
+│   │   │   ├── Detail.styled.ts
+│   │   │   ├── Detail.tsx
+│   │   │   └── index.ts
+│   │   └── Home
+│   │       ├── Home.styled.ts
+│   │       ├── Home.tsx
+│   │       └── index.ts
+│   └── vite-env.d.ts
+├── task.txt
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite.config.ts
+└── yarn.lock
+
 ## Elements
 ### Pokemon Card
 ![pokecard](https://user-images.githubusercontent.com/11324886/218634857-7e1c7e87-3af5-483e-8a2f-f5bdb94347ff.png)
